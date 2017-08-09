@@ -16,13 +16,13 @@ namespace WF_TestNhaccuatuiAPI
         public Form1()
         {
             InitializeComponent();
-            txtText.Text = "Ta là của nhau";
+            txtText.Text = "http://www.nhaccuatui.com/playlist/lovely-songs-dang-cap-nhat.Qh07s1aOCfC2.html";
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //Song song = new Song(txtText.Text);
-            Search.Song(txtText.Text);
+            Playlist song = new Playlist(txtText.Text);
+           
         }
     }
 }
