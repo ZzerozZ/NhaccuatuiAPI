@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WF_TestNhaccuatuiAPI.Manipulation;
 
 namespace WF_TestNhaccuatuiAPI
 {
@@ -15,12 +16,13 @@ namespace WF_TestNhaccuatuiAPI
         public Form1()
         {
             InitializeComponent();
-            txtText.Text = "http://www.nhaccuatui.com/bai-hat/ta-la-cua-nhau-dong-nhi-ft-ong-cao-thang.L0G5DzIXoFf3.html";
+            txtText.Text = "Ta là của nhau";
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Song song = new Song(txtText.Text);
+            //Song song = new Song(txtText.Text);
+            Search.Song(txtText.Text);
         }
     }
 }

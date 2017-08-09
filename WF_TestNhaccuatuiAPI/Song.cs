@@ -36,7 +36,7 @@ namespace WF_TestNhaccuatuiAPI
       //  public string AlbumName { get => albumName; set => albumName = value; }
       //  public int TotalTime { get => totalTime; set => totalTime = value; }
 
-        private string iD;
+        private string iD;//
         private string name;//
         private string path;//
         private string sourceUrl;//
