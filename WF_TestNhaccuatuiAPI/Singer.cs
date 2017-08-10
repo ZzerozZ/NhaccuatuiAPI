@@ -9,17 +9,17 @@ namespace WF_TestNhaccuatuiAPI
     public class Singer
     {
         private string name;
-        private string link;
+        private string path;
         private string avatarLink;
 
         public string AuthorName { get => name; set => name = value; }
-        public string AuthorLink { get => link; set => link = value; }
-        public string AuthorAvatarLink { get => avatarLink; set => avatarLink = value; }
+        public string Path { get => path; set => path = value; }
+        public string AvatarLink { get => avatarLink; set => avatarLink = value; }
 
         public Singer(string _name, string _link, string _avatar)
         {
             name = _name;
-            link = _link;
+            path = _link;
             avatarLink = _avatar;
         }
     }
