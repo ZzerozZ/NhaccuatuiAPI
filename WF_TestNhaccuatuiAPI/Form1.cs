@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WF_TestNhaccuatuiAPI.Function;
 using WF_TestNhaccuatuiAPI.Manipulation;
 using WF_TestNhaccuatuiAPI.Manipulation.Charts;
 
@@ -17,21 +20,16 @@ namespace WF_TestNhaccuatuiAPI
         public Form1()
         {
             InitializeComponent();
-            txtText.Text = "http://www.nhaccuatui.com/video/em-cua-anh-dung-cua-ai-tap-9-fap-tv.RAaecL6wNXZXp.html";
+            txtText.Text = "http://www.nhaccuatui.com";
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //Video song = new Video(txtText.Text);
-            //Search.Video("em của anh đừng của ai");
-            TopSong top = new TopSong();
-            StringBuilder strB = new StringBuilder("");
-            //foreach(Song song in top.AllVPopSong())
-            //{
-            //    strB.Append(song.Name + "\n");
-            //}
+            //HttpClient httpClient = new HttpClient();
+            //httpClient.BaseAddress = new Uri(txtText.Text);
 
-            //MessageBox.Show(strB.ToString(), "BXH VN");
+            //string html = WebUtility.HtmlDecode(httpClient.GetStringAsync("").Result);
+            HomePage.ItemList();
         }
     }
 }
