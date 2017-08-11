@@ -31,58 +31,10 @@ namespace WF_TestNhaccuatuiAPI.Manipulation
                 VPop = new List<string>();
                 KPop = new List<string>();
                 USUK = new List<string>();
-
-                //Get VPop topsong:
-
-                HttpClient VPopHttpClient = new HttpClient();
-                VPopHttpClient.BaseAddress = new Uri(topVN);
-
-                string html = WebUtility.HtmlDecode(VPopHttpClient.GetStringAsync("").Result);
-
-                string songInfo = Regex.Match(html, @"<ul class=""list_show_chart"">(.*?)/ul>", RegexOptions.Singleline).Value;
-
-                var songList = Regex.Matches(songInfo, @"<li>(.*?)/div>", RegexOptions.Singleline);
-
-                foreach (var song in songList)
-                {
-                    VPop.Add(Regex.Match(song.ToString(), "http(.*?)html", RegexOptions.Singleline).Value);
-                }
-
-
-                //Get USUK topsong:
-                HttpClient USUKHttpClient = new HttpClient();
-                USUKHttpClient.BaseAddress = new Uri(topUS);
-
-                html = WebUtility.HtmlDecode(USUKHttpClient.GetStringAsync("").Result);
-
-                songInfo = Regex.Match(html, @"<ul class=""list_show_chart"">(.*?)/ul>", RegexOptions.Singleline).Value;
-
-                songList = Regex.Matches(songInfo, @"<li>(.*?)/div>", RegexOptions.Singleline);
-
-                foreach (var song in songList)
-                {
-                    USUK.Add(Regex.Match(song.ToString(), "http(.*?)html", RegexOptions.Singleline).Value);
-                }
-
-                //Get KPop topsong:
-                HttpClient KPopHttpClient = new HttpClient();
-                KPopHttpClient.BaseAddress = new Uri(topKR);
-
-                html = WebUtility.HtmlDecode(KPopHttpClient.GetStringAsync("").Result);
-
-                songInfo = Regex.Match(html, @"<ul class=""list_show_chart"">(.*?)/ul>", RegexOptions.Singleline).Value;
-
-                songList = Regex.Matches(songInfo, @"<li>(.*?)/div>", RegexOptions.Singleline);
-
-                foreach (var song in songList)
-                {
-                    KPop.Add(Regex.Match(song.ToString(), "http(.*?)html", RegexOptions.Singleline).Value);
-                }
-
-                //foreach(var song in songList)
-                //{
-                //    Songs.Add(new Song(Regex.Match(song.ToString(), "http(.*?)html", RegexOptions.Singleline).Value));
-                //}
+                
+                GetTop.Get(topVN, VPop);
+                GetTop.Get(topUS, USUK);
+                GetTop.Get(topKR, KPop);
             }
 
 

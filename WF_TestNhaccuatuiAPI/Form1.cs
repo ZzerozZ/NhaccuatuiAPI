@@ -26,12 +26,12 @@ namespace WF_TestNhaccuatuiAPI
             //Search.Video("em của anh đừng của ai");
             TopSong top = new TopSong();
             StringBuilder strB = new StringBuilder("");
-            foreach(Song song in top.AllVPopSong())
-            {
-                strB.Append(song.Name + "\n");
-            }
+            //foreach(Song song in top.AllVPopSong())
+            //{
+            //    strB.Append(song.Name + "\n");
+            //}
 
-            MessageBox.Show(strB.ToString(), "BXH VN");
+            //MessageBox.Show(strB.ToString(), "BXH VN");
         }
     }
 }
