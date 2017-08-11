@@ -13,20 +13,6 @@ namespace WF_TestNhaccuatuiAPI.Manipulation
     {
         public class GetTop
         {
-            //private static GetTop get;
-
-            //public static GetTop Get
-            //{
-            //    get
-            //    {
-            //        if (get == null)
-            //            get = new GetTop();
-            //        return get;
-            //    }
-            //    private set => get = value;
-            //}
-
-
             public static void Get(string baseAddress, List<string> output)
             {
                 HttpClient httpClient = new HttpClient();

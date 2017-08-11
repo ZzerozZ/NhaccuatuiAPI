@@ -33,8 +33,6 @@ namespace WF_TestNhaccuatuiAPI
         public string SourceUrl { get => sourceUrl; set => sourceUrl = value; }
         public Singer Singer { get => singer; set => singer = value; }
         public string Lyric { get => lyric; set => lyric = value; }
-      //  public string AlbumName { get => albumName; set => albumName = value; }
-      //  public int TotalTime { get => totalTime; set => totalTime = value; }
 
         private string iD;//
         private string name;//
@@ -42,8 +40,6 @@ namespace WF_TestNhaccuatuiAPI
         private string sourceUrl;//
         private Singer singer;//
         private string lyric;//
-      //  private string albumName;
-       // private int totalTime;
 
         //Constructor:
         public Song() { }

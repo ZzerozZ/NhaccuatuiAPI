@@ -20,16 +20,16 @@ namespace WF_TestNhaccuatuiAPI
         public Form1()
         {
             InitializeComponent();
-            txtText.Text = "http://www.nhaccuatui.com";
+            txtText.Text = "http://www.nhaccuatui.com/playlist/dang-nghe-dang-cap-nhat.P0Pe1HCB34cc.html";
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //HttpClient httpClient = new HttpClient();
-            //httpClient.BaseAddress = new Uri(txtText.Text);
-
-            //string html = WebUtility.HtmlDecode(httpClient.GetStringAsync("").Result);
-            HomePage.ItemList();
+            string path = AppDomain.CurrentDomain.BaseDirectory + "Song";
+            Playlist playlist = new Playlist(txtText.Text);
+            txtText.Text = "DOWNLOADING...";
+            if(playlist.Download(path))
+                txtText.Text = "Done!";
         }
     }
 }

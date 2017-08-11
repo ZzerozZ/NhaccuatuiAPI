@@ -37,7 +37,7 @@ namespace WF_TestNhaccuatuiAPI
             //get avatar:
             AvatarPath = Regex.Match(html, @"src=""http://avatar.nct.nixcdn.com/playlist/(.*?)jpg", RegexOptions.Singleline).Value.Replace(@"src=""", "");
 
-            string info = Regex.Match(html, @" < ul class=""list_song_in_album"">(.*?)/ul>", RegexOptions.Singleline).Value;
+            string info = Regex.Match(html, @"<ul class=""list_song_in_album"">(.*?)/ul>", RegexOptions.Singleline).Value;
 
             var songsUrl = Regex.Matches(info, @"<meta content=""http://www.nhaccuatui.com/bai-hat/(.*?)html", RegexOptions.Singleline);
 
@@ -51,6 +51,29 @@ namespace WF_TestNhaccuatuiAPI
             foreach(var url in songsUrl)
             {
                 SongUrl.Add(url.ToString().Replace(@"<meta content=""", ""));
+            }
+        }
+
+        /// <summary>
+        /// Download all song in this Playlist
+        /// </summary>
+        /// <param name="SavePath"></param>
+        /// <returns></returns>
+        public bool Download(string SavePath)
+        {
+            try
+            {
+                foreach (string songPath in SongUrl)
+                {
+                    Song song = new Song(songPath);
+                    song.Download(SavePath);
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

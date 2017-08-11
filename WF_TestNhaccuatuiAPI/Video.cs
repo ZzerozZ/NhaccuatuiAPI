@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -61,6 +62,25 @@ namespace WF_TestNhaccuatuiAPI
             SourceLowQuality = infoList[6].ToString().Replace("CDATA[", "").Replace(@"]]>", ""); 
             SourceHighQuality = infoList[7].ToString().Replace("CDATA[", "").Replace(@"]]>", "");
             NextVideoPath = infoList[27].ToString().Replace("CDATA[", "").Replace(@"]]>", "");
+        }
+
+        public bool Download(string SavePath)
+        {
+            try
+            {
+                string videoname = SavePath + "\\" + Name + ".mp4";
+                if (!File.Exists(videoname))
+                {
+                    WebClient webClient = new WebClient();
+                    webClient.DownloadFile(Path, videoname);
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
