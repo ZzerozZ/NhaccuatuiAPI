@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nhaccuatui.Structure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,7 +14,7 @@ namespace Nhaccuatui.Manipulation
     {
         public class GetTop
         {
-            public static void Get(string baseAddress, List<string> output)
+            public static void Get(string baseAddress, List<NCTObject> output)
             {
                 HttpClient httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri(baseAddress);
@@ -26,7 +27,8 @@ namespace Nhaccuatui.Manipulation
 
                 foreach (var song in itemList)
                 {
-                    output.Add(Regex.Match(song.ToString(), "http(.*?)html", RegexOptions.Singleline).Value);
+                    itemInfo = Regex.Match(song.ToString(), @"class=""name_song"" title=""(.*?)""", RegexOptions.Singleline).Value.Replace(@"class=""name_song"" title=", "").Replace(@"""", "");
+                    output.Add(new NCTObject(itemInfo, Regex.Match(song.ToString(), "http(.*?)html", RegexOptions.Singleline).Value));
                 }
             }
         }

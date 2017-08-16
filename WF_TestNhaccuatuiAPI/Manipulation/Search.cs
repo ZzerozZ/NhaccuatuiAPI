@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nhaccuatui.Structure;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,11 +22,11 @@ namespace Nhaccuatui.Manipulation
         /// Get a collection song URL
         /// </summary>
         /// <param name="keyWord">Search string</param>
-        /// <returns>List<string> with any ListItem is Url of a song</string></returns>
-        public static List<string> Song(string keyWord)
+        /// <returns>List<NCTObject> with any ListItem is Name & Url of a song</string></returns>
+        public static List<NCTObject> Song(string keyWord)
         {
             //return value:
-            List<string> songs = new List<string>();
+            List<NCTObject> songs = new List<NCTObject>();
 
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://www.nhaccuatui.com/tim-kiem/bai-hat?q=" + WebUtility.UrlEncode(keyWord));
@@ -34,10 +35,11 @@ namespace Nhaccuatui.Manipulation
             string html = WebUtility.HtmlDecode(httpClient.GetStringAsync("").Result);
 
             //Get song's Url list:
-            var list = Regex.Matches(html, @" <h3 style=""display: inline;(.*?).html""", RegexOptions.Singleline);
+            var list = Regex.Matches(html, @" <h3 style=""display: inline;(.*?).html"" title=""(.*?)""", RegexOptions.Singleline);
             foreach(var item in list)
             {
-                songs.Add(Regex.Match(item.ToString(), @"href=""(.*?)""", RegexOptions.Singleline).Value.ToString().Replace("href=", "").Replace(@"""", ""));
+                html = Regex.Match(item.ToString(), @" title=""(.*?)""", RegexOptions.Singleline).Value.Replace(" title=", "").Replace(@"""", "");
+                songs.Add(new NCTObject(html, Regex.Match(item.ToString(), @"href =""(.*?)""", RegexOptions.Singleline).Value.ToString().Replace("href=", "").Replace(@"""", "")));
             }
 
             return songs;
@@ -48,11 +50,11 @@ namespace Nhaccuatui.Manipulation
         /// Get a collection playlist URL
         /// </summary>
         /// <param name="keyWord">Search string</param>
-        /// <returns>List<string> with any ListItem is Url of a playlist</returns>
-        public static List<string> PlayList(string keyWord)
+        /// <returns>List<string> with any ListItem is Name & Url of a playlist</returns>
+        public static List<NCTObject> PlayList(string keyWord)
         {
             //return value:
-            List<string> playlists = new List<string>();
+            List<NCTObject> playlists = new List<NCTObject>();
 
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://www.nhaccuatui.com/tim-kiem/playlist?q=" + WebUtility.UrlEncode(keyWord));
@@ -61,10 +63,11 @@ namespace Nhaccuatui.Manipulation
             string html = WebUtility.HtmlDecode(httpClient.GetStringAsync("").Result);
 
             //get list:
-            var info = Regex.Matches(Regex.Match(html, @"<ul class=""search_returns_list"">(.*?)/ul>", RegexOptions.Singleline).Value, @"><a href=""http://www.nhaccuatui.com/playlist/(.*?)html", RegexOptions.Singleline);
+            var info = Regex.Matches(Regex.Match(html, @"<ul class=""search_returns_list"">(.*?)/ul>", RegexOptions.Singleline).Value, @"><a href=""http://www.nhaccuatui.com/playlist/(.*?)html(.*?)title=""(.*?)""", RegexOptions.Singleline);
             foreach(var item in info)
             {
-                playlists.Add(item.ToString().Replace(@"><a href=""", ""));
+                html = Regex.Match(item.ToString(), @"title=""(.*?)""", RegexOptions.Singleline).Value.Replace("title=", "").Replace(@"""", "");
+                playlists.Add(new NCTObject(html, Regex.Match(item.ToString(), @"http(.*?)html", RegexOptions.Singleline).Value));
             }
 
             return playlists;
@@ -74,7 +77,7 @@ namespace Nhaccuatui.Manipulation
         /// Get a collection playlist URL
         /// </summary>
         /// <param name="keyWord">Search string</param>
-        /// <returns>List<string> with any ListItem is Url of a playlist</returns>
+        /// <returns>List<string> with any ListItem is Name & Url of a playlist</returns>
         public static List<string> Video(string keyWord)
         {
             //return value:

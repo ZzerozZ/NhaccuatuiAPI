@@ -52,6 +52,7 @@
     <Compile Include="Singer.cs" />
     <Compile Include="Song.cs" />
     <Compile Include="Structure\NCTItem.cs" />
+    <Compile Include="Structure\NCTObject.cs" />
     <Compile Include="Video.cs" />
   </ItemGroup>
   <ItemGroup />

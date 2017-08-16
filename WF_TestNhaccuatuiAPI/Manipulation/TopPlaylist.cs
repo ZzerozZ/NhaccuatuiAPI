@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nhaccuatui.Structure;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,20 +19,20 @@ namespace Nhaccuatui.Manipulation
             private static string topUS = "http://www.nhaccuatui.com/playlist/top-20.au-my.html";
             private static string topKR = "http://www.nhaccuatui.com/playlist/top-20.nhac-han.html";
 
-            private List<string> vPop;
-            private List<string> kPop;
-            private List<string> uSUK;
+            private List<NCTObject> vPop;
+            private List<NCTObject> kPop;
+            private List<NCTObject> uSUK;
 
-            public List<string> VPop { get => vPop; set => vPop = value; }
-            public List<string> KPop { get => kPop; set => kPop = value; }
-            public List<string> USUK { get => uSUK; set => uSUK = value; }
+            public List<NCTObject> VPop { get => vPop; set => vPop = value; }
+            public List<NCTObject> KPop { get => kPop; set => kPop = value; }
+            public List<NCTObject> USUK { get => uSUK; set => uSUK = value; }
 
 
             public TopPlaylist()
             {
-                VPop = new List<string>();
-                KPop = new List<string>();
-                USUK = new List<string>();
+                VPop = new List<NCTObject>();
+                KPop = new List<NCTObject>();
+                USUK = new List<NCTObject>();
 
                 GetTop.Get(topVN, VPop);
                 GetTop.Get(topUS, USUK);
@@ -47,9 +48,9 @@ namespace Nhaccuatui.Manipulation
             {
                 ObservableCollection<Playlist> list = new ObservableCollection<Playlist>();
 
-                foreach (string playlistUrl in VPop)
+                foreach (NCTObject playlistUrl in VPop)
                 {
-                    list.Add(new Playlist(playlistUrl));
+                    list.Add(new Playlist(playlistUrl.Path));
                 }
 
                 return list;
@@ -63,9 +64,9 @@ namespace Nhaccuatui.Manipulation
             {
                 ObservableCollection<Playlist> list = new ObservableCollection<Playlist>();
 
-                foreach (string playlistUrl in USUK)
+                foreach (NCTObject playlistUrl in VPop)
                 {
-                    list.Add(new Playlist(playlistUrl));
+                    list.Add(new Playlist(playlistUrl.Path));
                 }
 
                 return list;
@@ -79,9 +80,9 @@ namespace Nhaccuatui.Manipulation
             {
                 ObservableCollection<Playlist> list = new ObservableCollection<Playlist>();
 
-                foreach (string playlistUrl in KPop)
+                foreach (NCTObject playlistUrl in VPop)
                 {
-                    list.Add(new Playlist(playlistUrl));
+                    list.Add(new Playlist(playlistUrl.Path));
                 }
 
                 return list;

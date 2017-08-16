@@ -25,11 +25,12 @@ namespace Nhaccuatui
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "Song";
-            Playlist playlist = new Playlist(txtText.Text);
-            txtText.Text = "DOWNLOADING...";
-            if(playlist.Download(path))
-                txtText.Text = "Done!";
+            HomePage.ItemList();
+            //string path = AppDomain.CurrentDomain.BaseDirectory + "Song";
+            //Playlist playlist = new Playlist(txtText.Text);
+            //txtText.Text = "DOWNLOADING...";
+            //if(playlist.Download(path))
+            //    txtText.Text = "Done!";
         }
     }
 }
