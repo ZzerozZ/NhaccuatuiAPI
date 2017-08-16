@@ -1,4 +1,4 @@
-﻿namespace WF_TestNhaccuatuiAPI
+﻿namespace Nhaccuatui
 {
     partial class Form1
     {

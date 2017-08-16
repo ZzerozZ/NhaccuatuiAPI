@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WF_TestNhaccuatuiAPI.Properties
+namespace Nhaccuatui.Properties
 {
 
 

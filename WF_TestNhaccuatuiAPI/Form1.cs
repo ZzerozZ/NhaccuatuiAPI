@@ -9,11 +9,11 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WF_TestNhaccuatuiAPI.Function;
-using WF_TestNhaccuatuiAPI.Manipulation;
-using WF_TestNhaccuatuiAPI.Manipulation.Charts;
+using Nhaccuatui.Function;
+using Nhaccuatui.Manipulation;
+using Nhaccuatui.Manipulation.Charts;
 
-namespace WF_TestNhaccuatuiAPI
+namespace Nhaccuatui
 {
     public partial class Form1 : Form
     {
